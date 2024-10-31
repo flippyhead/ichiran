@@ -145,4 +145,5 @@
 (defun add-errata (&optional conn)
   "Public-facing version of ichiran/dict::add-errata"
   (with-db conn
-    (ichiran/dict::add-errata)))
+    (with-parallel-db-ops (4)  ; Use 4 parallel threads
+      (ichiran/dict::add-errata))))

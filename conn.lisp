@@ -171,3 +171,11 @@
         (setf *connection* ichiran-connection
               *is-dynamic-connection* t)
         (setf *is-dynamic-connection* nil))))
+
+(defmacro with-parallel-db-ops ((n-threads) &body body)
+  `(let ((lparallel:*kernel* (lparallel:make-kernel ,n-threads)))
+     (unwind-protect
+          (lparallel:pmap 'list
+                         (lambda (op) (with-connection *connection* op))
+                         (list ,@body))
+       (lparallel:end-kernel))))
