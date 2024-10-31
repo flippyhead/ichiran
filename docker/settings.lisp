@@ -1,9 +1,9 @@
 (in-package #:ichiran/conn)
 
-(defparameter *connection* '("jmdict" "postgres" "password" "pg"))
+(defparameter *connection* '("jmdict" "default" "endpoint=ep-falling-sunset-a4546ynz;mfRe13gPNzSs" "ep-falling-sunset-a4546ynz-pooler.us-east-1.aws.neon.tech" :use-ssl :require :port 5432))
 
-(defparameter *connections* '((:old "jmdict_old" "postgres" "password" "localhost")
-                              (:test "jmdict_test" "postgres" "password" "localhost")))
+(defparameter *connections* '((:old "jmdict" "default" "endpoint=ep-falling-sunset-a4546ynz;mfRe13gPNzSs" "ep-falling-sunset-a4546ynz-pooler.us-east-1.aws.neon.tech" :use-ssl :require :port 5432)
+                             (:test "jmdict" "default" "endpoint=ep-falling-sunset-a4546ynz;mfRe13gPNzSs" "ep-falling-sunset-a4546ynz-pooler.us-east-1.aws.neon.tech" :use-ssl :require :port 5432)))
 
 (in-package #:ichiran/dict)
 
