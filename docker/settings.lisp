@@ -1,9 +1,9 @@
 (in-package #:ichiran/conn)
 
-(defparameter *connection* '("jmdict" "default" "endpoint=ep-falling-sunset-a4546ynz;mfRe13gPNzSs" "ep-falling-sunset-a4546ynz-pooler.us-east-1.aws.neon.tech" :use-ssl :require :port 5432))
+(defparameter *connection* '("jmdict" "postgres.bayzeytbybzmgfqykhhc" "zitgom-Huqpyv-6wuqso" "aws-0-us-east-1.pooler.supabase.com" :use-ssl :require :port 6543))
 
-(defparameter *connections* '((:old "jmdict" "default" "endpoint=ep-falling-sunset-a4546ynz;mfRe13gPNzSs" "ep-falling-sunset-a4546ynz-pooler.us-east-1.aws.neon.tech" :use-ssl :require :port 5432)
-                             (:test "jmdict" "default" "endpoint=ep-falling-sunset-a4546ynz;mfRe13gPNzSs" "ep-falling-sunset-a4546ynz-pooler.us-east-1.aws.neon.tech" :use-ssl :require :port 5432)))
+(defparameter *connections* '((:old "jmdict" "postgres.bayzeytbybzmgfqykhhc" "zitgom-Huqpyv-6wuqso" "aws-0-us-east-1.pooler.supabase.com" :use-ssl :require :port 6543)
+                             (:test "jmdict" "postgres.bayzeytbybzmgfqykhhc" "zitgom-Huqpyv-6wuqso" "aws-0-us-east-1.pooler.supabase.com" :use-ssl :require :port 6543)))
 
 (in-package #:ichiran/dict)
 

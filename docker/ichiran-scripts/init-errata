@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+echo "Adding errata..."
+sbcl --core /root/ichiran.core --non-interactive \
+     --eval "(format t \"Starting errata process...~%\")" \
+     --eval "(ichiran/mnt:add-errata)" \
+     --eval "(format t \"Dumping core with errata...~%\")" \
+     --eval "(uiop:dump-image \"/root/ichiran.core\" :executable nil :compression t)"

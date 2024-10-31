@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -e
+sbcl --core /root/ichiran.core --non-interactive \
+     --eval "(in-package :ichiran/all)" \
+     --eval "(init-suffixes t)" \
+     --eval "(postmodern:clear-connection-pool)" \
+     --eval "(uiop:dump-image \"/root/ichiran.core\" :executable nil :compression t)" 

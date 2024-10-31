@@ -1,10 +1,12 @@
 #!/bin/bash
 
 set -e
+echo "Loading ichiran..."
 sbcl --non-interactive --eval "(ql:quickload :ichiran)" \
-                       --eval "(ichiran/mnt:add-errata)" \
-                       --eval "(in-package :ichiran/all)" \
-                       --eval "(init-all-caches)" \
-                       --eval "(init-suffixes t)" \
-                       --eval "(postmodern:clear-connection-pool)" \
-                       --eval "(uiop:dump-image \"/root/ichiran.core\" :executable nil :compression t)"
+                      --eval "(format t \"Initializing caches...~%\")" \
+                      --eval "(in-package :ichiran/all)" \
+                      --eval "(init-all-caches)" \
+                      --eval "(format t \"Clearing connection pool...~%\")" \
+                      --eval "(postmodern:clear-connection-pool)" \
+                      --eval "(format t \"Dumping initial core...~%\")" \
+                      --eval "(uiop:dump-image \"/root/ichiran.core\" :executable nil :compression t)"
