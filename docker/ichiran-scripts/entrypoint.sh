@@ -1,18 +1,13 @@
 #!/bin/bash
 
-set -e  # Exit on any error
+echo "Checking postgres server status..."
+while : ; do
+    pg_isready -h pg > /dev/null && break;
+    sleep 1;
+done
 
-echo "Starting main container init..."
-if ! init-sbcl; then
-    echo "Failed to initialize SBCL core!"
-    exit 1
-fi
-
-echo "Starting errata initialization in background..."
-init-errata &
-
-echo "Starting suffix initialization in background..."
-init-suffixes &
+echo "Postgres is ready, starting main container init."
+init-all;
 
 echo "All set, awaiting commands."
-sleep infinity
+sleep infinity;

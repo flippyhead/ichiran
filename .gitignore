@@ -5,3 +5,6 @@ settings.lisp
 ichiran-cli
 ichiran-cli.exe
 docker/pgdata/
+~.ssh
+~.ssh-cert.pub
+setup/ichiran.pgdump

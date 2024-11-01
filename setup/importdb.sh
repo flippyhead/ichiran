@@ -15,10 +15,10 @@ else
 fi
 
 # Connection details
-export PGHOST=aws-0-us-east-1.pooler.supabase.com
-export PGPORT=6543
-export PGUSER=postgres.bayzeytbybzmgfqykhhc
-export PGPASSWORD=zitgom-Huqpyv-6wuqso
+export PGHOST=localhost
+export PGPORT=5432
+export PGUSER=postgres
+export PGPASSWORD=he7rSOeYCrgTjHo
 export PGDATABASE=postgres
 
 # Terminate existing connections and drop database
@@ -45,6 +45,20 @@ createdb -h $PGHOST \
         -T template0 \
         jmdict
 
+# Drop all existing tables if any exist
+echo "Dropping all existing tables..."
+psql -h $PGHOST \
+     -p $PGPORT \
+     -U $PGUSER \
+     -d jmdict \
+     -c "DO \$\$ DECLARE
+         r RECORD;
+     BEGIN
+         FOR r IN (SELECT tablename FROM pg_tables WHERE schemaname = 'public') LOOP
+             EXECUTE 'DROP TABLE IF EXISTS ' || quote_ident(r.tablename) || ' CASCADE';
+         END LOOP;
+     END \$\$;"
+
 # Restore the dump
 echo "Restoring database from dump..."
 pg_restore -h $PGHOST \
@@ -53,6 +67,9 @@ pg_restore -h $PGHOST \
           -d jmdict \
           --no-owner \
           --no-privileges \
+          --clean \
+          --if-exists \
+          -v \
           ichiran.pgdump
 
 echo "========================="
